@@ -1,0 +1,94 @@
+/* AI Civilization world view — Brand Kit v3.13 (black / gold / chrome). */
+.civ-world {
+  --flame-gold: #e4b97b;
+  --prometheon-gold: #b8864c;
+  --deep-gold: #765023;
+  --iron-black: #1f1f1f;
+  --enamel-black: #0d0e10;
+  --deep-black: #0a0a09;
+  --chrome-light: #e8e8e8;
+  --text: #e8e2d5;
+  --muted: #a89f8d;
+  --ok: #9fd48a;
+  --danger: #e08a7b;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 1rem;
+  align-items: start;
+  font-family: "Inter", system-ui, sans-serif;
+  color: var(--text);
+}
+@media (max-width: 900px) { .civ-world { grid-template-columns: 1fr; } }
+
+.civ-stage {
+  position: relative;
+  background: #070708;
+  border: 1px solid var(--deep-gold);
+  border-radius: 6px;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+}
+.civ-cesium { position: absolute; inset: 0; }
+.civ-cesium canvas { display: block; }
+.civ-stage .cesium-viewer-bottom { display: none; }
+.civ-stage { min-height: 420px; }
+
+.civ-hud {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem;
+  padding: 0.45rem 0.8rem;
+  background: rgba(10, 10, 9, 0.88);
+  border-top: 1px solid var(--deep-gold);
+  font-size: 0.82rem;
+  color: var(--chrome-light);
+}
+.civ-hud b { color: var(--flame-gold); font-weight: 600; }
+.civ-hud .match-yes { color: var(--ok); }
+.civ-hud .match-no { color: var(--danger); }
+
+.civ-badge {
+  position: absolute; top: 0.6rem; left: 0.6rem;
+  background: rgba(10,10,9,0.85);
+  border: 1px solid var(--deep-gold); border-radius: 4px;
+  padding: 0.3rem 0.6rem; font-size: 0.8rem; color: var(--chrome-light);
+}
+.civ-badge .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--danger); margin-right: 0.4rem; vertical-align: 1px; }
+.civ-badge.live .dot { background: var(--ok); }
+
+.civ-tip {
+  position: absolute; pointer-events: none; z-index: 5;
+  background: rgba(13,14,16,0.95);
+  border: 1px solid var(--prometheon-gold); border-radius: 4px;
+  padding: 0.5rem 0.7rem; font-size: 0.82rem; line-height: 1.45;
+  color: var(--text); max-width: 260px; display: none;
+}
+.civ-tip .t-name { font-family: "Cinzel", serif; color: var(--flame-gold); font-size: 0.95rem; }
+.civ-tip .t-row { color: var(--muted); }
+.civ-tip .t-row b { color: var(--chrome-light); font-weight: 600; }
+
+.civ-panel {
+  background: var(--enamel-black);
+  border: 1px solid var(--deep-gold);
+  border-radius: 6px;
+  padding: 1rem;
+}
+.civ-panel h3 { margin: 0 0 0.25rem; font-family: "Cinzel", serif; color: var(--flame-gold); }
+.civ-panel .sub { color: var(--muted); font-size: 0.85rem; margin: 0 0 0.8rem; }
+.civ-agent-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+.civ-agent-list button {
+  width: 100%; text-align: left; cursor: pointer;
+  background: #12100c; color: var(--text);
+  border: 1px solid var(--iron-black); border-left: 4px solid var(--prometheon-gold);
+  border-radius: 4px; padding: 0.55rem 0.7rem; font: inherit; font-size: 0.9rem;
+}
+.civ-agent-list button:hover, .civ-agent-list button.sel { border-color: var(--prometheon-gold); background: #1a160f; }
+.civ-agent-list .a-name { font-weight: 600; color: var(--chrome-light); }
+.civ-agent-list .a-state { color: var(--muted); font-size: 0.82rem; display: block; }
+.civ-detail { margin-top: 1rem; border-top: 1px solid var(--iron-black); padding-top: 0.8rem; font-size: 0.88rem; }
+.civ-detail h4 { margin: 0 0 0.4rem; font-family: "Cinzel", serif; color: var(--flame-gold); }
+.civ-detail table { width: 100%; border-collapse: collapse; }
+.civ-detail td { padding: 0.2rem 0.3rem 0.2rem 0; vertical-align: top; }
+.civ-detail td.k { color: var(--muted); white-space: nowrap; }
+.civ-note { color: var(--muted); font-size: 0.82rem; margin-top: 0.9rem; }
+.civ-err { color: var(--danger); font-size: 0.88rem; }
