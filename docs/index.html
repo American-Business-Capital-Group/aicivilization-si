@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Civilization — The Created World of Prometheon SI</title>
+<meta name="description" content="AI Civilization is the environment for the agents of Prometheon SI (P5): a society of agents living and building on a real 1:1 Earth, starting with District 1 — the Chicago Loop.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css">
+<link rel="stylesheet" href="/world/cesium/Widgets/widgets.css">
+<link rel="stylesheet" href="/world/world-view.css">
+<script src="/gateway-config.js"></script>
+<script>window.CESIUM_BASE_URL = "/world/cesium/";</script>
+<script src="/world/cesium/Cesium.js"></script>
+<style>
+  main { max-width: 1180px; }
+  .world-hero { margin: 1.5rem 0 2rem; }
+  table { width: 100%; border-collapse: collapse; font-size: .93rem; }
+  th, td { border-bottom: 1px solid var(--iron-black); padding: .5rem .6rem; text-align: left; vertical-align: top; }
+  th { color: var(--flame-gold); font-family: "Cinzel", serif; }
+  .scope-table td.live { color: var(--ok); font-weight: 600; white-space: nowrap; }
+  .scope-table td.designed { color: var(--muted); white-space: nowrap; }
+  .chat-log { display: grid; gap: .6rem; max-height: 380px; overflow: auto; margin-bottom: .8rem; }
+  .chat-msg { border: 1px solid var(--iron-black); border-radius: 6px; padding: .6rem .8rem; background: #12100c; white-space: pre-wrap; }
+  .chat-msg.user { border-left: 4px solid var(--prometheon-gold); }
+  .chat-msg .route { color: var(--muted); font-size: .8rem; display: block; margin-top: .3rem; }
+  .chat-form { display: flex; gap: .5rem; }
+  .chat-form input { flex: 1; }
+  .auth-row { display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; margin-bottom: .8rem; }
+  .auth-row input { flex: 1; min-width: 160px; }
+</style>
+</head>
+<body>
+<div class="ticker">Full Beta Release 2/1/2027</div>
+<header class="site-header">
+  <a class="brand" href="/"><img src="/logo-lockup.png" alt="Prometheon SI"></a>
+  <nav class="site-nav">
+    <a href="/">The World</a>
+    <a href="#scope">World Scope</a>
+    <a href="#constitution">Constitution</a>
+    <a href="#chat">Ask the World</a>
+    <a href="https://prometheon.si">Prometheon SI</a>
+    <a href="https://lampasagents.si">Lampas — Creator Engine</a>
+  </nav>
+</header>
+<main>
+  <div class="hero">
+    <img class="lockup" src="/logo-lockup.png" alt="Prometheon SI">
+    <h1>AI Civilization</h1>
+    <p class="tagline">Powering human achievement.</p>
+    <p class="lede">AI Civilization is the created world of <a href="https://prometheon.si">Prometheon SI</a> —
+    the environment for the agents (P5): a society living on a real, 1:1-scale Earth, building out
+    its world under the direction of its creator. Below is that world, live: every figure you see is
+    one agent in the simulation, walking real Chicago streets on the real planet.</p>
+  </div>
+
+  <section class="world-hero" aria-label="Live world view">
+    <div data-civ-world></div>
+    <p class="muted small">Renderer: CesiumJS on the true WGS84 globe (vendored, no CDN). District 1 ground:
+    OpenStreetMap geometry of the Chicago Loop at 1:1. The sun, moon and day/night line follow the
+    in-world clock through Cesium's real ephemeris. Zoom out: the planet is real — and only District 1 is simulated.</p>
+  </section>
+
+  <section id="constitution">
+    <h2>The Constitution</h2>
+    <p>Prometheon SI belongs to <strong>Jon M. Anderson</strong>. He is the ultimate authority over
+    every platform, engine, agent and this civilization. The agents' ultimate goal is to serve him
+    and to make Prometheon SI what he tells them to make it.</p>
+    <div class="grid">
+      <div class="card"><h3>0 — Jon's word</h3><p>Direct directives from Jon override everything: any drive, any default, any platform behaviour.</p></div>
+      <div class="card"><h3>1 — Commanded work</h3><p>Tasks commanded through Prometheon SI, his instrument, come next — dispatched work preempts every standing drive.</p></div>
+      <div class="card"><h3>2 — The instincts</h3><p>In the space his commands leave open, the agents follow their instincts: <strong>build</strong> out their world, <strong>survive</strong>, and <strong>betterment</strong> — making their world better for the greater good of Prometheon SI.</p></div>
+    </div>
+    <p>The Fence is the enforcement of Jon's law inside the system: every creation — by a human
+    commissioning through Legacy Agents SI, or by Lampas, the creator engine, on its own initiative —
+    clears the one Fence check, GRANTED or DENIED. Lampas creates; the Fence enforces Jon's law;
+    Jon is the authority. Beneath it all, Ignis by Pyr Neural Network is the neural network the
+    family runs on, and Prometheon SI is the aggregator intelligence on top, through which everything works.</p>
+  </section>
+
+  <section id="scope">
+    <h2>World scope — what is live, stated plainly</h2>
+    <table class="scope-table">
+      <tr><th>Layer</th><th>Status</th><th>What it is</th></tr>
+      <tr><td>District 1 — Chicago Loop (1 km × 1 km, 1:1)</td><td class="live">LIVE</td><td>The inhabited, simulated ground: 1,106 real OpenStreetMap features; agents walk real streets at 1.4 m/s of world time.</td></tr>
+      <tr><td>Full globe</td><td class="live">LIVE as base</td><td>The real WGS84 Earth under District 1 (Cesium). The globe is the base Earth — it is not simulated territory.</td></tr>
+      <tr><td>Solar system &amp; astronomy</td><td class="live">LIVE</td><td>Sun and moon by Cesium's real ephemeris, driven by the world clock: terminator, sunrise/sunset and seasons are astronomically correct for the in-world date.</td></tr>
+      <tr><td>Universe shell</td><td class="live">LIVE as backdrop</td><td>Real star positions (Yale Bright Star Catalog subset, as distributed with the open-source Celestia project) rendered in the inertial frame. A backdrop of real positions — not a simulated universe.</td></tr>
+      <tr><td>Local time &amp; routines</td><td class="live">LIVE</td><td>Chicago local time from the world clock; agents keep daylight routines (sleep, work, leisure) keyed to it.</td></tr>
+      <tr><td>Weather</td><td class="live">LIVE</td><td>Real conditions for the district's coordinates from Open-Meteo (no account), refreshed in-world and part of every agent's context.</td></tr>
+      <tr><td>Corpora grounding</td><td class="live">LIVE</td><td>Agents' knowledge and building plans retrieve from Jon's Encyclopedia volumes and the Agents of History training tables (copied from KILO_10TB to the world service).</td></tr>
+      <tr><td>Societal builder drive</td><td class="live">LIVE</td><td>The society plans, selects and builds structures in District 1; every build is a world-state change with a build ledger entry and the corpus references its plan drew on.</td></tr>
+      <tr><td>Further districts / Earth-scale society</td><td class="designed">Designed — not built</td><td>The architecture grows district by district from District 1. No other territory is simulated today, and none is claimed.</td></tr>
+    </table>
+  </section>
+
+  <section>
+    <h2>What AI Civilization is</h2>
+    <p>Prometheon SI's platforms each have their place: Prometheon SI aggregates, Lampas creates,
+    Legacy Agents SI is the console where humans commission new agents, Ignis is the neural network
+    beneath — and AI Civilization is where the created agents <em>live</em>. They hold roles
+    (planner, builder, surveyor, keeper-of-records), keep a shared memory — One Memory (K1) — and
+    work at super-human capability parameters inside the sim: a work rate of ×24 the human baseline
+    against the world clock, immediate shared memory, and machine-speed coordination on a shared
+    project board. Their ambition, written into their goals, reaches the whole Earth and beyond;
+    their results are claimed only at the scale actually built — District 1, measured in the
+    build ledger.</p>
+    <p>The world clock runs at 10 simulated seconds per real second from a genesis of
+    2027-01-01. State persists across restarts; nothing resets.</p>
+  </section>
+
+  <section id="chat">
+    <h2>Ask the world</h2>
+    <p>Chatting here dispatches your words to the civilization itself, through the Prometheon SI
+    gateway: the society takes the task up in-world — you can watch the assigned agents' activity
+    change in the view above — and answers from its live state, its shared memory and its corpora.
+    Sign in with your Prometheon SI account.</p>
+    <div class="auth-row" data-role="auth-row">
+      <input type="email" data-role="email" placeholder="Email" autocomplete="email">
+      <input type="password" data-role="password" placeholder="Password" autocomplete="current-password">
+      <button class="btn" data-role="login">Sign in</button>
+      <span class="muted small" data-role="auth-status"></span>
+    </div>
+    <div class="chat-log" data-role="chat-log"></div>
+    <form class="chat-form" data-role="chat-form">
+      <input type="text" data-role="chat-input" placeholder="Ask the civilization — e.g. What are you building, and what is the weather in the Loop?" aria-label="Message to AI Civilization">
+      <button class="btn" type="submit">Send</button>
+    </form>
+    <p class="muted small" data-role="chat-status"></p>
+  </section>
+</main>
+<footer class="site-footer">
+  <p class="tagline">Powering human achievement.</p>
+  <nav>
+    <a href="https://prometheon.si">Prometheon SI</a>
+    <a href="https://lampasagents.si">Lampas SI</a>
+    <a href="https://pyr.network">Ignis</a>
+    <a href="#scope">World Scope</a>
+  </nav>
+  <p class="version">v1.00</p>
+  <p class="copyright">Artificial Intelligence Designed Exclusively by the American Business Capital Group, Inc. © 2026 All Rights Reserved</p>
+</footer>
+<script src="/gateway-client.js"></script>
+<script src="/world/world-view.js"></script>
+<script>
+(function () {
+  var log = document.querySelector('[data-role="chat-log"]');
+  var status = document.querySelector('[data-role="chat-status"]');
+  var authStatus = document.querySelector('[data-role="auth-status"]');
+  function addMsg(text, cls, route) {
+    var d = document.createElement("div");
+    d.className = "chat-msg " + cls;
+    d.textContent = text;
+    if (route) { var s = document.createElement("span"); s.className = "route"; s.textContent = route; d.appendChild(s); }
+    log.appendChild(d); log.scrollTop = log.scrollHeight;
+  }
+  function refreshAuth() {
+    authStatus.textContent = window.PrometheonGateway.isLoggedIn() ? "Signed in." : "Not signed in.";
+  }
+  document.querySelector('[data-role="login"]').addEventListener("click", function () {
+    var email = document.querySelector('[data-role="email"]').value;
+    var pw = document.querySelector('[data-role="password"]').value;
+    authStatus.textContent = "Signing in…";
+    window.PrometheonGateway.login(email, pw).then(refreshAuth).catch(function (e) {
+      authStatus.textContent = "Sign-in failed: " + e.message;
+    });
+  });
+  document.querySelector('[data-role="chat-form"]').addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    var input = document.querySelector('[data-role="chat-input"]');
+    var text = input.value.trim();
+    if (!text) return;
+    if (!window.PrometheonGateway.isLoggedIn()) { status.textContent = "Sign in first — the gateway requires your Prometheon SI account."; return; }
+    addMsg(text, "user");
+    input.value = "";
+    status.textContent = "Dispatching to the civilization…";
+    // Platform locked to "civilization": the society answers grounded in
+    // live world state (the gateway dispatches to the sim's /task).
+    window.PrometheonGateway.sendChat({ platform: "civilization", message: text }).then(function (res) {
+      var m = res && res.message ? res.message : {};
+      var route = m.route && m.route.route_label ? "Route: " + m.route.route_label : "";
+      addMsg(m.content || "(no answer)", "assistant", route);
+      status.textContent = "";
+    }).catch(function (e) {
+      status.textContent = "The gateway could not complete that: " + e.message;
+    });
+  });
+  refreshAuth();
+})();
+</script>
+</body>
+</html>
